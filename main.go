@@ -10,7 +10,7 @@ func qrHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/api/qr", qrHandler)
+	http.HandleFunc("/", qrHandler)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
 	} else {
