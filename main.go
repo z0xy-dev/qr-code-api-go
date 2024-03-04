@@ -2,11 +2,19 @@ package main
 
 import (
 	"fmt"
+	"github.com/skip2/go-qrcode"
 	"net/http"
 )
 
 func qrHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
+	png, err := qrcode.Encode("https://example.org", qrcode.Medium, 256)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "image/png")
+	w.Write(png)
 }
 
 func main() {
