@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  tmb:
+    build: .
+    ports:
+      - "9361:3690"
+    restart: always
