@@ -3,14 +3,14 @@ package main
 import (
 	"QRCodeAPI/routes"
 	"fmt"
+	"log"
 	"net/http"
 )
 
 func main() {
 	http.HandleFunc("/", routes.RouteRequest)
 	port := 3690
-	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
-		panic(err)
-	}
-	fmt.Println("Server is running on port", port)
+
+	fmt.Printf("Server is running on port %d\n", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }

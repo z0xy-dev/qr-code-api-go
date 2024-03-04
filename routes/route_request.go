@@ -6,10 +6,10 @@ import (
 )
 
 func RouteRequest(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "/api/qr" {
+	switch r.URL.Path {
+	case "/api/qr":
 		QRHandler(w, r)
-	} else {
+	default:
 		utils.JSONResponse(w, http.StatusNotFound, []byte(`{"message": "Not found"}`))
-		return
 	}
 }
