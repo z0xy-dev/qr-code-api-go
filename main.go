@@ -85,9 +85,12 @@ func qrHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", requestHandler)
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+
+	port := 3690
+
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		panic(err)
-	} else {
-		fmt.Print("Server is running on port 8080")
 	}
+
+	fmt.Println("Server is running on port", port)
 }
