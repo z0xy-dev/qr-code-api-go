@@ -13,5 +13,10 @@ func main() {
 	port := 3690
 
 	fmt.Printf("Server is running on port %d\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), utils.AllowCORS(nil)))
+	log.Fatal(
+		http.ListenAndServe(
+			fmt.Sprintf(":%d", port),
+			utils.AllowCORS(http.HandlerFunc(routes.RouteRequest)),
+		),
+	)
 }
